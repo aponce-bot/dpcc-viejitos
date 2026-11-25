@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tu dinero, tu decisión · Protege tus ahorros</title>
+<style>
+:root{--bg:#fbf3e6;--card:#fff;--ink:#0f2a4a;--muted:#43566e;--navy:#0f2a4a;--on:#fff;--teal:#1f8a7d;--coral:#e8714d;--line:#e6d9c3;--soft:#f3e6d0;--ok:#1f8a4c;--bad:#c0392b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1626;--card:#13253c;--ink:#f4ede0;--muted:#b4c0d0;--navy:#1b3a5f;--teal:#3cc1b1;--coral:#f4977a;--line:#27405e;--soft:#102033;--ok:#52d08a;--bad:#ff8a7a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1626;--card:#13253c;--ink:#f4ede0;--muted:#b4c0d0;--navy:#1b3a5f;--teal:#3cc1b1;--coral:#f4977a;--line:#27405e;--soft:#102033;--ok:#52d08a;--bad:#ff8a7a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.65 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+h1,h2,h3{line-height:1.15;margin:0 0 .5em;font-weight:800}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:18px;align-items:center;overflow-x:auto;padding:12px 20px;white-space:nowrap}
+nav b{color:var(--coral);margin-right:auto}
+nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px}
+nav a:hover{color:var(--teal)}
+.hero{padding:70px 0 50px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:var(--teal);opacity:.18}
+.hero h1{font-size:clamp(38px,8vw,78px);text-transform:uppercase;letter-spacing:-1px}
+.hero p{font-size:clamp(19px,3vw,26px);color:var(--muted);max-width:680px;margin:0 0 26px}
+.hero p b{color:var(--coral)}
+.btn{display:inline-block;background:var(--coral);color:#1a1208;padding:14px 26px;border-radius:999px;font-weight:800;text-decoration:none;border:0;font:inherit;font-weight:800;cursor:pointer}
+section{padding:54px 0}
+section.alt{background:var(--soft)}
+h2{font-size:clamp(28px,5vw,42px)}
+h2:after{content:"";display:block;width:64px;height:6px;border-radius:3px;background:var(--coral);margin-top:12px}
+.lead{max-width:780px;color:var(--muted)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px}
+.card h3{font-size:20px;margin-bottom:.3em}
+.card p,.card li{color:var(--muted);margin:0}
+.ico{font-size:30px;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--navy);margin-bottom:12px}
+.tag{display:inline-block;font-size:13px;font-weight:800;padding:3px 12px;border-radius:99px;background:var(--navy);color:#fff;margin-bottom:10px}
+.panel{background:var(--navy);color:#fff;border-radius:24px;padding:28px;margin-top:26px}
+.panel h3{color:#ffb39b}
+.panel p{color:#fff;margin:0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.tab{background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:99px;padding:10px 20px;font:inherit;font-weight:700;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--teal);border-color:var(--teal);color:#06201c}
+.tp{display:none;margin-top:16px}.tp.on{display:block}
+ul.tick{list-style:none;padding:0;margin:0}
+ul.tick li{padding:12px 0 12px 34px;position:relative;border-bottom:1px solid var(--line);color:var(--ink)}
+ul.tick li:before{content:"✓";position:absolute;left:4px;color:var(--teal);font-weight:800}
+ul.no li:before{content:"✗";color:var(--bad)}
+.two{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:20px}
+.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk input{width:22px;height:22px;margin-top:4px;accent-color:var(--coral)}
+.res{margin-top:16px;padding:18px;border-radius:16px;font-weight:700;background:var(--card);border:2px solid var(--line)}
+.res.w{border-color:#e0a030}.res.d{border-color:var(--bad)}.res.g{border-color:var(--ok)}
+.msg{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px}
+.msg q{display:block;font-style:italic;margin-bottom:12px;color:var(--ink);quotes:"“" "”"}
+.msg .row{display:flex;gap:10px;flex-wrap:wrap}
+.msg button{flex:1;min-width:130px;padding:10px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.fb{margin-top:10px;font-weight:600;display:none}.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:26px 0 0}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px 16px 70px;margin-bottom:12px;position:relative;color:var(--muted)}
+.steps li:before{content:counter(s);position:absolute;left:16px;top:14px;width:40px;height:40px;border-radius:50%;background:var(--coral);color:#1a1208;display:grid;place-items:center;font-weight:800}
+.steps b{color:var(--ink)}
+.calc{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:18px}
+.calc label{font-weight:700;font-size:15px;display:block}
+.calc input{width:100%;padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+#cifras{border-top:1px solid var(--line)}
+.kpis{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:26px}
+.kpi{background:var(--navy);color:#fff;border-radius:20px;padding:20px}
+.kpi b{display:block;font-size:clamp(28px,5vw,38px);color:#ffb39b;line-height:1.1}
+.kpi span{display:block;font-size:15px;margin-top:6px}
+.kpi small{display:block;opacity:.75;font-size:12px;margin-top:8px}
+.charts{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));margin-top:20px}
+.charts .card h3{font-size:18px}
+.unit{font-size:13px;color:var(--muted);margin:0 0 14px!important}
+.vc{display:flex;gap:6px;align-items:flex-end}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0}
+.col .val{font-size:11px;font-weight:800;margin-bottom:4px;text-align:center;color:var(--ink)}
+.col .lbl{font-size:11px;margin-top:6px;color:var(--muted);text-align:center}
+.track{height:170px;width:100%;display:flex;align-items:flex-end}
+.bar{width:100%;height:0;background:var(--teal);border-radius:8px 8px 0 0;transition:height .9s ease}
+.bar.hi{background:var(--coral)}.bar.pj{opacity:.5}
+.hr{margin:14px 0}
+.hl{display:block;font-size:14px;font-weight:700;margin-bottom:4px}
+.ht{background:var(--line);border-radius:99px;height:18px;overflow:hidden}
+.hb{height:100%;width:0;background:var(--teal);border-radius:99px;transition:width .9s ease}
+.hv{display:block;font-size:14px;font-weight:800;color:var(--coral);margin-top:4px}
+.src{font-size:13px!important;margin-top:14px!important}
+.srcs{font-size:14px;color:var(--muted);margin-top:26px}
+.srcs a{color:var(--teal)}
+@media (prefers-reduced-motion:reduce){.bar,.hb{transition:none}}
+footer{background:var(--navy);color:#fff;text-align:center;padding:40px 20px}
+footer b{color:#ffb39b}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Tu dinero, tu decisión</b>
+<a href="#causas">Causas</a><a href="#efectos">Efectos</a><a href="#cifras">En cifras</a><a href="#senales">Señales</a><a href="#soluciones">Soluciones</a><a href="#practica">Practica</a><a href="#ayuda">Si te estafaron</a></div></nav>
+
+<header class="hero"><div class="wrap">
+<h1>Tu dinero,<br>tu decisión</h1>
+<p>Las estafas contra adultos mayores se pueden <b>prevenir</b>. Aquí encontrarás por qué ocurren, qué daño causan y, sobre todo, <b>qué hacer</b> para protegerte.</p>
+<a class="btn" href="#soluciones">Ver soluciones</a>
+</div></header>
+
+<section id="causas"><div class="wrap">
+<h2>¿Por qué ocurren las estafas?</h2>
+<p class="lead">Los estafadores no buscan a las personas “descuidadas”: buscan oportunidades. Estas son las causas y razones más comunes que ellos aprovechan.</p>
+<div class="grid">
+<div class="card"><div class="ico">🤝</div><h3>Confianza y buena educación</h3><p>Muchos adultos mayores aprendieron a atender con amabilidad a quien llama o toca la puerta. Los estafadores usan eso para ganar confianza rápido.</p></div>
+<div class="card"><div class="ico">📱</div><h3>Poca familiaridad digital</h3><p>Es más difícil distinguir una página, un enlace o una aplicación falsa de una real cuando la tecnología es nueva.</p></div>
+<div class="card"><div class="ico">💬</div><h3>Soledad y falta de compañía</h3><p>Quien pasa mucho tiempo solo es más fácil de convencer con una conversación amable o una “urgencia familiar” inventada.</p></div>
+<div class="card"><div class="ico">💵</div><h3>Ingresos fijos y ahorros</h3><p>Una pensión mensual y los ahorros de toda la vida hacen que se les vea como un objetivo atractivo.</p></div>
+<div class="card"><div class="ico">⏱️</div><h3>Presión y urgencia</h3><p>“Hágalo ahora o pierde su cuenta”. La prisa impide pensar y consultar con alguien de confianza.</p></div>
+<div class="card"><div class="ico">📋</div><h3>Falta de orientación</h3><p>Sin información clara sobre cómo funcionan los bancos y los fraudes, es difícil saber qué es normal y qué no.</p></div>
+</div></div></section>
+
+<section id="efectos" class="alt"><div class="wrap">
+<h2>¿Qué efectos tienen?</h2>
+<p class="lead">El daño va mucho más allá del dinero perdido.</p>
+<div class="grid">
+<div class="card"><span class="tag">Económico</span><h3>Pérdida de ahorros</h3><p>Se pueden perder pensiones, ahorros de años o incluso endeudarse sin darse cuenta, con poca posibilidad de recuperarse porque ya no hay ingresos laborales.</p></div>
+<div class="card"><span class="tag">Emocional</span><h3>Vergüenza y miedo</h3><p>Muchas víctimas sienten culpa y no lo cuentan. Eso retrasa pedir ayuda y deja la puerta abierta a nuevos intentos.</p></div>
+<div class="card"><span class="tag">Autonomía</span><h3>Pérdida de independencia</h3><p>Después de un fraude, la familia puede desconfiar y quitarle el control de su dinero, algo que la campaña busca evitar.</p></div>
+<div class="card"><span class="tag">Familia</span><h3>Tensión en el hogar</h3><p>Reproches, discusiones y estrés afectan la relación con hijos, nietos y cuidadores.</p></div>
+<div class="card"><span class="tag">Salud</span><h3>Bienestar afectado</h3><p>La ansiedad y la preocupación por el dinero perdido pueden afectar el sueño y la tranquilidad diaria.</p></div>
+<div class="card"><span class="tag">Comunidad</span><h3>Desconfianza general</h3><p>Cuando los fraudes se repiten, las personas se aíslan y dejan de usar servicios que sí les convienen.</p></div>
+</div></div></section>
+
+<section id="cifras"><div class="wrap">
+<h2>El problema en cifras</h2>
+<p class="lead">Datos reales de informes oficiales y prensa. Las estadísticas más completas sobre fraude a mayores vienen de EE. UU. (FBI); se muestran junto con datos de Perú y Chile. Son casos denunciados: la realidad es mayor.</p>
+<div class="kpis">
+<div class="kpi"><b>US$ 7,7 mil millones</b><span>perdidos por mayores de 60 en EE. UU. en 2025, un 59 % más que en 2024.</span><small>FBI IC3, informe 2025</small></div>
+<div class="kpi"><b>201 266</b><span>denuncias de mayores de 60 en 2025, un 37 % más que el año anterior.</span><small>FBI IC3, informe 2025</small></div>
+<div class="kpi"><b>+12 400</b><span>mayores de 60 perdieron 100 000 dólares o más cada uno en 2025.</span><small>FBI IC3, informe 2025</small></div>
+<div class="kpi"><b>US$ 352 M</b><span>perdidos por mayores de 60 en denuncias que mencionan inteligencia artificial (2025).</span><small>FBI IC3, informe 2025</small></div>
+<div class="kpi"><b>+60 %</b><span>aumentaron en Perú las estafas con tarjetas bancarias en cuatro años; los adultos mayores están entre los más afectados.</span><small>Ministerio Público (Perú)</small></div>
+<div class="kpi"><b>29 %</b><span>de los adultos mayores en Chile sufrió un fraude digital en 2024 (31 % en 2023).</span><small>ClaroVTR y Criteria</small></div>
+</div>
+<div class="charts">
+<div class="card"><h3>Pérdidas anuales de mayores de 60 (EE. UU.)</h3><p class="unit">Miles de millones de dólares, reportados al FBI</p><div id="c1"></div><p class="src">Fuente: FBI IC3, informes 2023 y 2025. Los valores de 2022 y 2024 se calculan a partir del crecimiento que reportan esos informes.</p></div>
+<div class="card"><h3>Estafas que más dinero cuestan a mayores de 60</h3><p class="unit">EE. UU., 2023, millones de dólares perdidos</p><div id="c2"></div><p class="src">Fuente: FBI, Informe de fraude a mayores 2023.</p></div>
+<div class="card"><h3>Denuncias de estafas a adultos mayores en Chile</h3><p class="unit">Número de casos denunciados</p><div id="c3"></div><p class="src">Fuente: The Clinic, 16 de marzo de 2026: las denuncias se cuadriplicaron en ocho años.</p></div>
+<div class="card"><h3>Población de 65 años o más en Perú</h3><p class="unit">Porcentaje del total de habitantes (* proyección)</p><div id="c4"></div><p class="src">Fuente: Universidad de Lima, revista Desafíos n.º 5 (2024). Más adultos mayores significa más personas expuestas.</p></div>
+<div class="card"><h3>Pérdidas por grupo de edad (EE. UU., 2025)</h3><p class="unit">Miles de millones de dólares</p><div id="c5"></div><p class="src">Fuente: FBI IC3 2025, vía ABA Banking Journal. Los mayores de 60 reportan las mayores pérdidas.</p></div>
+</div>
+<div class="panel"><h3>Qué nos dicen los datos</h3>
+<p>Las pérdidas de los mayores de 60 en EE. UU. se multiplicaron por más de cuatro entre 2021 y 2025. En Chile, las denuncias se cuadriplicaron en ocho años. En Perú, la población de 65 años o más pasará del 5 % en 2000 al 13 % en 2035, así que la prevención es cada vez más urgente. Además, los expertos advierten que muchos casos no se denuncian por vergüenza o desconfianza, por lo que estas cifras son solo una parte del problema.</p></div>
+<p class="srcs"><b>Fuentes:</b> <a href="https://www.housingwire.com/articles/fbi-seniors-cybercrime-2025/" target="_blank" rel="noopener">FBI IC3 2025 (vía HousingWire)</a> · <a href="https://bankingjournal.aba.com/2026/04/fbi-cybercrime-losses-increased-26-in-2025/" target="_blank" rel="noopener">ABA Banking Journal</a> · <a href="https://www.fox5dc.com/news/fbi-elder-fraud-report-2023" target="_blank" rel="noopener">FBI Elder Fraud Report 2023</a> · <a href="https://www.theclinic.cl/2026/03/16/estafas-sufridas-por-adultos-mayores-se-cuadriplican-en-los-ultimos-ocho-anos-denuncias-superaron-los-9-mil-casos-en-2025/" target="_blank" rel="noopener">The Clinic (Chile)</a> · <a href="https://www.chilevision.cl/noticias/tendencias/ciberseguridad-en-adultos-mayores-29-ha-sufrido-fraudes-digitales-en-2024-segun-estudio/amp/" target="_blank" rel="noopener">ClaroVTR y Criteria</a> · <a href="https://diariocorreo.pe/economia/cinco-consejos-para-evitar-fraudes-a-adultos-mayores-en-peru-noticia/" target="_blank" rel="noopener">Diario Correo (Perú)</a> · <a href="https://revistas.ulima.edu.pe/index.php/ddee/article/download/6271/7124" target="_blank" rel="noopener">Universidad de Lima</a></p>
+</div></section>
+
+<section id="senales"><div class="wrap">
+<h2>Señales de alerta</h2>
+<p class="lead">Marca lo que te está pasando ahora mismo y mira qué tan riesgosa es la situación.</p>
+<div class="chk" id="chk" style="margin-top:20px">
+<label><input type="checkbox"> Me piden dinero, datos o claves con mucha urgencia.</label>
+<label><input type="checkbox"> Me dicen que no se lo cuente a nadie de mi familia.</label>
+<label><input type="checkbox"> Me prometen un premio, herencia o ganancia fácil que no pedí.</label>
+<label><input type="checkbox"> Me piden códigos que llegan por mensaje o la contraseña de mi banco.</label>
+<label><input type="checkbox"> Me mandan un enlace desconocido para “verificar” mi cuenta.</label>
+<label><input type="checkbox"> Me presionan para firmar un documento sin leerlo.</label>
+</div>
+<div class="res g" id="res">Marca las señales que veas para evaluar la situación.</div>
+</div></section>
+
+<section id="soluciones" class="alt"><div class="wrap">
+<h2>Soluciones y recomendaciones</h2>
+<p class="lead">La prevención funciona mejor cuando se combinan educación, hábitos y apoyo sin quitar autonomía. Elige a quién va dirigida la recomendación:</p>
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" aria-selected="true" data-t="0">Adultos mayores</button>
+<button class="tab" role="tab" aria-selected="false" data-t="1">Familiares y cuidadores</button>
+<button class="tab" role="tab" aria-selected="false" data-t="2">Estudiantes voluntarios</button>
+</div>
+<div class="tp on"><div class="two">
+<div class="card"><h3>Sí hacer</h3><ul class="tick"><li>Cortar la llamada y llamar usted al número oficial del banco.</li><li>Consultar con alguien de confianza antes de enviar dinero.</li><li>Usar contraseñas distintas y no anotarlas junto a la tarjeta.</li><li>Entrar a la app del banco solo desde la tienda oficial del celular.</li><li>Llevar un registro mensual de ingresos y gastos.</li></ul></div>
+<div class="card"><h3>No hacer</h3><ul class="tick no"><li>Compartir códigos, claves o el PIN con nadie, ni con “el banco”.</li><li>Abrir enlaces de mensajes que no esperaba.</li><li>Firmar documentos bajo presión o sin leerlos.</li><li>Prestar dinero a desconocidos por teléfono o redes.</li><li>Sentir vergüenza de preguntar: preguntar es la mejor defensa.</li></ul></div></div></div>
+<div class="tp"><div class="two">
+<div class="card"><h3>Acompañar</h3><ul class="tick"><li>Hablar del tema con respeto, sin reproches ni miedo.</li><li>Acordar una “palabra clave” familiar para emergencias reales.</li><li>Enseñar a verificar llamadas y mensajes en conjunto.</li><li>Revisar juntos los movimientos de las cuentas, si la persona lo acepta.</li></ul></div>
+<div class="card"><h3>Respetar su autonomía</h3><ul class="tick"><li>Decidir con ellos, no por ellos.</li><li>Evitar quitarles el control de su dinero tras un susto.</li><li>Si ocurre un fraude, apoyar sin culpar.</li><li>Mantener contacto frecuente para reducir la soledad.</li></ul></div></div></div>
+<div class="tp"><div class="two">
+<div class="card"><h3>Cómo ayudar bien</h3><ul class="tick"><li>Explicar con calma, sin tecnicismos y repitiendo lo que haga falta.</li><li>Practicar con ejemplos reales de mensajes y llamadas.</li><li>Nunca pedir ni guardar contraseñas, claves ni datos bancarios.</li><li>Enseñar con el celular de la persona, a su ritmo.</li></ul></div>
+<div class="card"><h3>Ideas para el taller</h3><ul class="tick"><li>Juego de roles: “recibí una llamada sospechosa”.</li><li>Entrega y llenado guiado de la libreta financiera.</li><li>Tarjetas de bolsillo con los 5 consejos clave.</li><li>Seguimiento por llamada a las dos semanas.</li></ul></div></div></div>
+
+<h3 style="margin-top:44px">Las 4 actividades de la campaña</h3>
+<div class="grid">
+<div class="card"><span class="tag">Actividad 1</span><h3>¡Que no te engañen!</h3><p><b>Problema que resuelve:</b> estafas por llamada, mensaje y enlace.<br>Taller práctico para reconocer señales de alerta y saber qué hacer ante una comunicación sospechosa.</p></div>
+<div class="card"><span class="tag">Actividad 2</span><h3>Mi dinero en orden</h3><p><b>Problema que resuelve:</b> desorden de pensiones, gastos y ahorros.<br>Libreta financiera para anotar ingresos, gastos, pagos y ahorros cada mes.</p></div>
+<div class="card"><span class="tag">Actividad 3</span><h3>Tecnología sin miedo</h3><p><b>Problema que resuelve:</b> desconocimiento de apps bancarias.<br>Práctica en el celular para consultar el banco de forma segura, detectar páginas falsas y cuidar contraseñas.</p></div>
+<div class="card"><span class="tag">Actividad 4</span><h3>Ahorrar también es cuidarse</h3><p><b>Problema que resuelve:</b> falta de planificación.<br>Metas de ahorro, diferencia entre necesidad y deseo, y planificación de gastos.</p></div>
+</div>
+</div></section>
+
+<section id="practica"><div class="wrap">
+<h2>Practica: ¿es estafa?</h2>
+<p class="lead">Lee cada mensaje y decide. Así se entrena el ojo.</p>
+<div id="quiz"></div>
+
+<h2 style="margin-top:56px">Mi dinero en orden</h2>
+<p class="lead">Una versión rápida de la libreta financiera. Escribe tus montos mensuales (no se guardan ni se envían).</p>
+<div class="calc">
+<div><label for="i1">Ingresos (pensión, otros)</label><input id="i1" type="number" min="0" inputmode="decimal" placeholder="0"></div>
+<div><label for="i2">Gastos fijos (casa, servicios)</label><input id="i2" type="number" min="0" inputmode="decimal" placeholder="0"></div>
+<div><label for="i3">Otros gastos (comida, salud, etc.)</label><input id="i3" type="number" min="0" inputmode="decimal" placeholder="0"></div>
+</div>
+<div class="res" id="cres">Completa tus montos para ver tu resultado.</div>
+</div></section>
+
+<section id="ayuda" class="alt"><div class="wrap">
+<h2>Si ya te estafaron: qué hacer</h2>
+<p class="lead">Actúa rápido y sin culpa. Cualquiera puede ser engañado.</p>
+<ol class="steps">
+<li><b>Corta el contacto.</b> No respondas más llamadas ni mensajes de esa persona.</li>
+<li><b>Llama a tu banco</b> por el número oficial (el de tu tarjeta) para bloquear tarjetas y cuentas.</li>
+<li><b>Cambia tus contraseñas</b> y claves, empezando por la banca y el correo.</li>
+<li><b>Guarda las pruebas:</b> capturas, números, nombres y comprobantes.</li>
+<li><b>Haz la denuncia</b> ante la policía o la autoridad de protección al consumidor de tu país y cuéntaselo a alguien de confianza.</li>
+</ol>
+<div class="panel"><h3>Recuerda</h3><p>Contarlo pronto aumenta las posibilidades de frenar el daño. La vergüenza es lo que más protege a los estafadores.</p></div>
+</div></section>
+
+<footer><p><b>Tu dinero, tu decisión</b></p><p>Cuidar su dinero es cuidar su tranquilidad. Iniciativa escolar de educación financiera.</p></footer>
+
+<script>
+document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){
+document.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected','false')});
+b.setAttribute('aria-selected','true');
+document.querySelectorAll('.tp').forEach(function(p,i){p.classList.toggle('on',i==b.dataset.t)});});});
+
+var chk=document.querySelectorAll('#chk input'),res=document.getElementById('res');
+chk.forEach(function(c){c.addEventListener('change',function(){
+var n=document.querySelectorAll('#chk input:checked').length;
+if(n==0){res.className='res g';res.textContent='Marca las señales que veas para evaluar la situación.';}
+else if(n==1){res.className='res w';res.textContent='Atención: hay una señal de alerta. Detente, no envíes nada y verifica por un canal oficial.';}
+else{res.className='res d';res.textContent='Alto riesgo: es muy probable que sea una estafa. Corta el contacto, no des datos ni dinero y consulta con alguien de confianza.';}});});
+
+var Q=[
+['“¡Felicidades! Ganó un premio. Ingrese a premio-seguro.com para recibirlo ahora.”',1,'Es estafa: un premio que no pediste y un enlace desconocido son señales clásicas.'],
+['Llamada: “Soy de su banco, su cuenta será bloqueada. Dígame el código que le llegó por mensaje.”',1,'Es estafa: el banco nunca pide códigos ni claves. Cuelga y llama al número oficial.'],
+['Mensaje de tu banco: “Se registró tu pago mensual. No necesitas hacer nada.” (sin enlaces ni pedidos)',0,'Parece informativo: no pide datos ni trae enlaces. Ante la duda, confírmalo en la app oficial.'],
+['“Hola abuelo, soy tu nieto, tuve un accidente. Deposita ya y no le digas a mis papás.”',1,'Es estafa: urgencia más secreto. Llama directo a tu familiar al número que ya conoces.']];
+var qz=document.getElementById('quiz');
+Q.forEach(function(q){var d=document.createElement('div');d.className='msg';
+d.innerHTML='<q>'+q[0]+'</q><div class="row"><button data-a="1">🚨 Es estafa</button><button data-a="0">✅ Parece seguro</button></div><div class="fb"></div>';
+d.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){
+var fb=d.querySelector('.fb'),ok=(+b.dataset.a===q[1]);
+fb.style.display='block';fb.className='fb '+(ok?'ok':'bad');
+fb.textContent=(ok?'¡Correcto! ':'Casi. ')+q[2];});});
+qz.appendChild(d);});
+
+function calc(){
+var a=+document.getElementById('i1').value||0,b=+document.getElementById('i2').value||0,c=+document.getElementById('i3').value||0,r=document.getElementById('cres');
+if(!a&&!b&&!c){r.className='res';r.textContent='Completa tus montos para ver tu resultado.';return;}
+var s=a-b-c,f=function(n){return n.toLocaleString('es',{maximumFractionDigits:0})};
+if(s>0){r.className='res g';r.textContent='Te sobran '+f(s)+' al mes. Una meta sencilla: apartar el 10 % de tus ingresos ('+f(a*0.1)+') como ahorro fijo.';}
+else if(s==0){r.className='res w';r.textContent='Tus gastos igualan tus ingresos. Revisa si puedes reducir algún gasto para empezar a ahorrar un poco.';}
+else{r.className='res d';r.textContent='Tus gastos superan tus ingresos por '+f(-s)+'. Revisa en qué recortar y consulta a alguien de confianza antes de pedir préstamos.';}}
+['i1','i2','i3'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
+function mk(id,d,o){var el=document.getElementById(id),mx=Math.max.apply(null,d.map(function(x){return x[1]}));
+el.setAttribute('role','img');el.setAttribute('aria-label',o.a);
+if(o.h){el.innerHTML=d.map(function(x){return '<div class="hr"><span class="hl">'+x[0]+'</span><div class="ht"><div class="hb" data-w="'+(x[1]/mx*100)+'"></div></div><span class="hv">'+x[2]+'</span></div>'}).join('');}
+else{el.className='vc';el.innerHTML=d.map(function(x,i){return '<div class="col"><span class="val">'+x[2]+'</span><div class="track"><div class="bar'+(o.hl&&o.hl.indexOf(i)>-1?' hi':'')+(o.pj&&i>=o.pj?' pj':'')+'" data-h="'+(x[1]/mx*100)+'"></div></div><span class="lbl">'+x[0]+'</span></div>'}).join('');}}
+mk('c1',[['2021',1.68,'1,7'],['2022',3.1,'3,1'],['2023',3.43,'3,4'],['2024',4.9,'4,9'],['2025',7.75,'7,7']],{hl:[4],a:'Gráfico de barras: pérdidas de mayores de 60 reportadas al FBI, de 1,7 mil millones de dólares en 2021 a 7,7 mil millones en 2025.'});
+mk('c2',[['Fraude de inversión',1240,'US$ 1 240 M'],['Soporte técnico falso',589,'US$ 589 M'],['Estafas románticas y de confianza',357,'US$ 357 M']],{h:1,a:'Gráfico de barras: fraude de inversión 1 240 millones, soporte técnico 589 millones, estafas románticas 357 millones de dólares.'});
+mk('c3',[['Hace 8 años',1969,'1 969'],['2025',9180,'9 180']],{hl:[1],a:'Gráfico de barras: denuncias en Chile de 1 969 hace ocho años a 9 180 en 2025.'});
+mk('c4',[['2000',5,'5 %'],['2005',6,'6 %'],['2010',6,'6 %'],['2015',7,'7 %'],['2020',9,'9 %'],['2025',10,'10 %'],['2030*',11,'11 %'],['2035*',13,'13 %']],{pj:6,a:'Gráfico de barras: población de 65 años o más en Perú, del 5 % en 2000 al 13 % proyectado en 2035.'});
+mk('c5',[['60 años o más',7.7,'US$ 7,7 mil M'],['50 a 59 años',3.6,'US$ 3,6 mil M']],{h:1,a:'Gráfico de barras: pérdidas de 7,7 mil millones de dólares en mayores de 60 y 3,6 mil millones en el grupo de 50 a 59 años.'});
+var be=document.querySelectorAll('[data-h],[data-w]');
+function sh(e){if(e.dataset.h)e.style.height=e.dataset.h+'%';else e.style.width=e.dataset.w+'%';}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){sh(x.target);io.unobserve(x.target);}});},{threshold:.2});be.forEach(function(e){io.observe(e);});}else{be.forEach(sh);}
+</script>
+</body>
+</html>
